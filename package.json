@@ -11,6 +11,8 @@
   "devDependencies": {
     "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
-    "karma-ie-launcher": "^1.0.0"
+    "karma-ie-launcher": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.7"
   }
 }
