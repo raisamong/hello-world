@@ -1,5 +1,21 @@
 var express = require('express');
+var mysql      = require('mysql');
 var app = express();
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'raisamong',
+  password : 'loveyuri55',
+  database : 'testdb'
+});
+
+connection.connect();
+
+connection.query('SELECT * FROM potluck', function(err, rows, fields) {
+  console.log(rows)
+});
+
+connection.end();
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/resources', express.static(__dirname + '/resources'));
