@@ -5,13 +5,7 @@ var db = require('./db.js');
 var connection_object= new db();
 var connection=connection_object.connection;
 
-connection.connect();
 
-connection.query('SELECT * FROM user', function(err, rows, fields) {
-  console.log(rows)
-});
-
-connection.end();
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/resources', express.static(__dirname + '/resources'));
@@ -20,8 +14,19 @@ app.get('/', function (req, res) {
     res.sendFile('resources/html/index.html', { root: __dirname });
 });
 app.use('/about', function (req, res) {
-  console.log('Request Type:', req.method);
-  res.json({ result: 1 });
+    connection.query('SELECT * FROM potluck', function(err, rows, fields) {
+        if (rows.length) {
+            res.json({
+                result: 0,
+                data: rows
+            });
+        }
+        else{
+            res.json({
+                result: 1,
+            });
+        }
+    });
 });
 //app.get('/about', function (req, res) {
 //    console.log('eiei');

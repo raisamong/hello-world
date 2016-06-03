@@ -18,7 +18,6 @@ angular.module('pipeApp',[])
             })
         }).success(function (data, status, headers, config) {
             console.log('success', data);
-
         }).
         error(function (data, status, headers, config) {
             console.log('error', data);
