@@ -6,7 +6,7 @@ angular.module('pipeApp',[])
         console.log('test http');
         $http({
             method: 'POST',
-            url: 'http://localhost:4000/about',
+            url: 'http://localhost:4000/login',
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
                 "access-control-allow-origin": " *"
