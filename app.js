@@ -17,14 +17,16 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/resources', express.static(__dirname + '/resources'));
 
 app.get('/', function (req, res) {
-    console.log(req.body);
-//    console.log(res);
     res.sendFile('resources/html/index.html', { root: __dirname });
 });
-
-app.get('/about', function (req, res) {
-    res.send('about');
+app.use('/about', function (req, res) {
+  console.log('Request Type:', req.method);
+  res.json({ result: 1 });
 });
+//app.get('/about', function (req, res) {
+//    console.log('eiei');
+//    res.json({ result: 1 });
+//});
 
 app.get('/index', function (req, res) {
     res.send('Hello World!');

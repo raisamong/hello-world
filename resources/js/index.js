@@ -3,11 +3,10 @@ angular.module('pipeApp',[])
                                  function($scope, $http, $q) {
     $scope.test = "what the fuck";
     $scope.testHttp = function () {
-        JSON.stringify([1, 'false', false]);
         console.log('test http');
         $http({
-            method: 'GET',
-            url: 'http://10.1.106.67:4000/',
+            method: 'POST',
+            url: 'http://localhost:4000/about',
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
                 "access-control-allow-origin": " *"
@@ -18,7 +17,8 @@ angular.module('pipeApp',[])
                 limit: '3',
             })
         }).success(function (data, status, headers, config) {
-            console.log('success');
+            console.log('success', data);
+
         }).
         error(function (data, status, headers, config) {
             console.log('error', data);
