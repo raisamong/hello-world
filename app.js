@@ -7,7 +7,6 @@ var connection = connection_object.connection;
 var app = express();
 var login = require('./middleware/index.js');
 
-global.connection = setupMysql();
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
@@ -28,5 +27,7 @@ var setupMysql = function () {
     var connection = connection_object.connection;
     return connection;
 };
+
+global.connection = setupMysql();
 
 module.exports = app;
