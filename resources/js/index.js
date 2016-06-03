@@ -1,6 +1,11 @@
-angular.module('pipeApp',[])
+angular.module('pipeApp',[
+    "ui.router",
+    "ui.bootstrap",
+    "ngAnimate"
+])
 .controller('dashboardController', ['$scope', '$http', '$q',
                                  function($scope, $http, $q) {
+     $scope.isCollapsed = false;
     $scope.test = "what the fuck";
     $scope.testHttp = function () {
         console.log('test http');

@@ -2,8 +2,14 @@
 <html ng-app="pipeApp">
     <head>
         <meta charset="utf-8" />
-        <script src="../bower_components/angular/angular.min.js" type="text/javascript"></script>
-        <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+        <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="../bower_components/angular/angular-animate.min.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../resources/js/index.js" type="text/javascript"></script>
         <script src="../resources/js/dashboard.js" type="text/javascript"></script>
 
@@ -12,5 +18,17 @@
         <input ng-model="test" />
         {{test}}
         <input type='button' ng-click="testHttp()"/>
+        <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+        <hr>
+        <div uib-collapse="isCollapsed">
+            <div class="well well-lg">Some content</div>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Hello, world!</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            </div>
+        </div>
     </body>
 </html>
