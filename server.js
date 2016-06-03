@@ -1,12 +1,11 @@
-var http = require('http');
-var dispatcher = require("httpdispatcher");
+var app = require('./app');
+var environment = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 
-var hostname = '127.0.0.1';
-var port = 8000;
+app.set('port', process.env.PORT || 4000);
+app.set('ipaddress', process.env.IPADDR || '127.0.0.1');
+app.set('env', environment);
 
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World\n');
-}).listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+var server = app.listen(app.get('port'), app.get('ipaddress'), function() {
+  console.log('Express server listening on port ' + server.address().port);
 });
+
