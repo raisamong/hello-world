@@ -1,12 +1,10 @@
 var express = require('express');
-var mysql = require('mysql');
-var bodyParser = require('body-parser');
-var db = require('./db.js');
-var connection_object= new db();
-var connection = connection_object.connection;
 var app = express();
-var login = require('./middleware/index.js');
+var mysql = require('mysql');
+var db = require('./db.js');
+var bodyParser = require('body-parser');
 
+var login = require('./middleware/index.js');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
