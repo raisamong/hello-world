@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var db = require('./db.js');
 var bodyParser = require('body-parser');
 
-var login = require('./middleware/index.js');
+var login = require('./middleware/login.js');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
