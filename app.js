@@ -3,11 +3,11 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var db = require('./db.js');
 var connection_object= new db();
-var connection=connection_object.connection;
+var connection = connection_object.connection;
 var app = express();
 var login = require('./middleware/index.js');
 
-global.connection = connection;
+global.connection = setupMysql();
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
@@ -22,5 +22,11 @@ app.get('/', function (req, res) {
 app.get('/index', function (req, res) {
     res.send('Hello World!');
 });
+
+var setupMysql = function () {
+    var connection_object= new db();
+    var connection = connection_object.connection;
+    return connection;
+};
 
 module.exports = app;
