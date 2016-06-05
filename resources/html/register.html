@@ -1,0 +1,22 @@
+<div>
+    <div uib-collapse="isCollapsed">
+        <div class="well well-lg">
+            <form role="form">
+                <h1>Register</h1>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input ng-model="email" type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input ng-model="password" type="password" class="form-control" id="pwd">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+                <button ng-click="login()" class="btn btn-default">Submit</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </form>
+        </div>
+    </div>
+</div>
