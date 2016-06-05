@@ -29,7 +29,7 @@ angular.module('pipeApp',[
             },
             data: JSON.stringify({
                 email: $scope.email,
-                password: $scope.password.hashCode()
+                password: $scope.password
             })
         }).success(function (data, status, headers, config) {
             console.log('success', data);
@@ -41,4 +41,17 @@ angular.module('pipeApp',[
             console.log('error', data);
         });
     };
-}]);
+}]).config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.
+        state('login', {
+            url: '/login',
+            templateUrl: './resources/html/login.html'
+        })
+        .state('register', {
+            url: '/register',
+            templateUrl: './resources/html/register.html'
+        });
+});

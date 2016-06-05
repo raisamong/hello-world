@@ -15,7 +15,9 @@ app.use('/', login);
 app.get('/', function (req, res) {
     res.sendFile('resources/html/index.html', { root: __dirname });
 });
-
+app.get('/new', function (req, res) {
+    res.sendFile('resources/html/new.html', { root: __dirname });
+});
 app.get('/index', function (req, res) {
     res.send('Hello World!');
 });
