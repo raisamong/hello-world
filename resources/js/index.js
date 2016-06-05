@@ -5,10 +5,20 @@ angular.module('pipeApp',[
 ])
 .controller('dashboardController', ['$scope', '$http', '$q',
                                  function($scope, $http, $q) {
+    String.prototype.hashCode = function() {
+      var hash = 0, i, chr, len;
+      if (this.length === 0) return hash;
+      for (i = 0, len = this.length; i < len; i++) {
+        chr   = this.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+      }
+      return hash;
+    };
     $scope.isCollapsed = true;
     $scope.test = "what the fuck";
 
-    $scope.testHttp = function () {
+    $scope.login = function () {
         console.log('test http');
         $http({
             method: 'POST',
@@ -18,15 +28,14 @@ angular.module('pipeApp',[
                 "access-control-allow-origin": " *"
             },
             data: JSON.stringify({
-                formId: '1',
-                start: '2',
-                limit: '3',
+                email: $scope.email,
+                password: $scope.password.hashCode()
             })
         }).success(function (data, status, headers, config) {
             console.log('success', data);
-            $scope.username = data.data[0].username;
-            $scope.email = data.data[0].email;
-            $scope.role = data.data[0].role;
+//            $scope.username = data.data[0].username;
+//            $scope.email = data.data[0].email;
+//            $scope.role = data.data[0].role;
         }).
         error(function (data, status, headers, config) {
             console.log('error', data);

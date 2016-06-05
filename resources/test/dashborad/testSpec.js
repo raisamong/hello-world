@@ -39,7 +39,6 @@ describe('Activity_Controller-Name_ActivityCtrl', function (){
     beforeEach(function (){
         inject(function (_$controller_) {
             $controller = _$controller_;
-
         });
         service = $controller('dashboardController',
         {
@@ -50,5 +49,4 @@ describe('Activity_Controller-Name_ActivityCtrl', function (){
     it('adadad', function () {
         expect($scope.test).toBeDefined();
     });
-
 });

@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 router.use('/login', function (req, res) {
     console.log(req.body);
-    global.connection.query('SELECT * FROM user', function(err, rows, fields) {
-        if (rows != null) {
+    global.connection.query('SElECT * FROM user WHERE email="' + req.body.email +'"AND password="'
+                             + req.body.password +'"', function(err, rows, fields) {
+        if (rows.length) {
             res.json({
                 result: 0,
                 data: rows
