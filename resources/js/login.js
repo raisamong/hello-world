@@ -13,7 +13,7 @@ angular.module('loginController', [])
                    "access-control-allow-origin": " *"
                },
                data: JSON.stringify({
-                   email: $scope.email,
+                   username: $scope.username,
                    password: $scope.password
                })
             }).success(function (data, status, headers, config) {
