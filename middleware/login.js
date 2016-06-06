@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var libAuth = require('../lib/auth.js')
 var sqlLogin =
 ['SElECT * FROM user WHERE email="','"AND password="'];
 
 router.use('/login', function (req, res) {
+    console.log('hash',libAuth.pwHash(req.body.password));
     global.connection.query( sqlLogin[0] + req.body.username + sqlLogin[1]+ req.body.password +'"', function(err, rows, fields) {
         if (rows.length) {
             res.json({

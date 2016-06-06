@@ -4,7 +4,7 @@ var _ = require('lodash');
 var mysql = require('mysql');
 var db = require('./db.js');
 var bodyParser = require('body-parser');
-var route = require('./middleware/route.js')
+var route = require('./middleware/route.js');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
