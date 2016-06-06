@@ -1,7 +1,8 @@
 <div>
     <!--<div uib-collapse="isCollapsed">-->
         <div class="well well-lg">
-            <form role="form">
+            <form role="form" name="loginForm"
+                  ng-submit="login(loginForm.username.$valid, loginForm.password.$valid)">
                 <h1>Login</h1>
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -16,7 +17,7 @@
                 <!--<div class="checkbox">-->
                     <!--<label><input type="checkbox"> Remember me</label>-->
                 <!--</div>-->
-                <button ng-click="login()" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
                 <button type="reset" class="btn btn-primary">Reset</button>
             </form>
         </div>
