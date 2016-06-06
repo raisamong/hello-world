@@ -1,16 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var libAuth = require('../lib/auth.js')
-var sqlLogin =
-['SElECT * FROM user WHERE email="','"AND password="'];
 
 router.route('/login')
     .get(function(req, res) {
         res.send('Get a random book');
     })
     .post(function(req, res) {
+        //setup info
         console.log('hash',libAuth.pwHash(req.body.password));
-        global.connection.query( sqlLogin[0] + req.body.username + sqlLogin[1]+ req.body.password +'"', function(err, rows, fields) {
+        var info = libAuth.escape(req.body);
+        var sql = "SELECT * FROM ?? WHERE ?? = ? AND ?? = ?";
+        var inserts = ['user', 'username', info.username, 'password', info.password];
+        sql = global.mysql.format(sql, inserts);
+
+        //query
+        global.connection.query(sql, function(err, rows, fields) {
             if (rows.length) {
                 res.json({
                     result: 0,

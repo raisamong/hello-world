@@ -36,5 +36,7 @@ var setupRoute = function () {
 
 setupRoute();
 global.connection = setupMysql();
+global.mysql = mysql;
+global._ = _;
 
 module.exports = app;
