@@ -36,13 +36,15 @@ router.route('/login')
 
 router.route('/register')
     .post(function (req, res) {
+        console.log(req.body);
         var info = libAuth.escape(req.body);
-        var sql = "INSERT INTO ? VALUES ( ??, ??, ??, ??, ??, ??)";
-        var inserts = ['user', null, info.username, libAuth.pwHash(info.username), info.email,
-                        null, 'admin'];
+        info.password =libAuth.pwHash(info.password);
+        console.log(info.password);
+        var sql = "INSERT INTO ? VALUES ( 'null', ??, ??, ??, 'null', ??)";
+        var inserts = ['user', info.username, info.password, info.email, 'admin'];
         sql = global.mysql.format(sql, inserts);
-        global.connection.query(sql, function(err, rows, fields) {
-            console.log(err, rows, fields);
+//        global.connection.query(sql, function(err, rows, fields) {
+//            console.log(err, rows, fields);
 //            if (rows.length) {
 //                res.json({
 //                    result: 0,
@@ -55,7 +57,7 @@ router.route('/register')
 //                    msg: 'data not exist'
 //                });
 //            }
-        });
+//        });
 });
 
 module.exports = router;

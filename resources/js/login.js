@@ -12,12 +12,15 @@ angular.module('loginModule', [])
 
     $scope.login = function (usernameValid, passwordValid) {
         console.log('login');
-        if (usernameValid, passwordValid) {
+        if (usernameValid && passwordValid) {
             service.login(genUserInfo()).then(function (res) {
                 console.log(res);
             }, function (err) {
                 console.log(err);
             });
+        }
+        else {
+            // invalid username && password
         }
     };
 }])
@@ -38,10 +41,11 @@ angular.module('loginModule', [])
                        username: info.username,
                        password: info.password
                    })
-                }).success(function (data, status, headers, config) {
+                })
+                .success(function (data, status, headers, config) {
                     deferred.resolve(data);
-
-                }).error(function (data, status, headers, config) {
+                })
+                .error(function (data, status, headers, config) {
                     deferred.reject(data);
                 });
             return deferred.promise;
