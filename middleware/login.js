@@ -8,12 +8,12 @@ router.route('/login')
     })
     .post(function(req, res) {
         //setup info
-        console.log('hash',libAuth.pwHash(req.body.password));
-        var info = libAuth.escape(req.body);
-        var sql = "SELECT * FROM ?? WHERE ?? = ? AND ?? = ?";
+        var info = req.body;
+        info.password = libAuth.pwHash(info.password);
+        var sql = 'SELECT * FROM ?? WHERE ?? = "?" AND ?? = "?"';
         var inserts = ['user', 'username', info.username, 'password', info.password];
         sql = global.mysql.format(sql, inserts);
-
+        console.log(sql);
         //query
         global.connection.query(sql, function(err, rows, fields) {
             if (rows.length) {
@@ -36,28 +36,15 @@ router.route('/login')
 
 router.route('/register')
     .post(function (req, res) {
-        console.log(req.body);
+        //setup info
         var info = libAuth.escape(req.body);
-        info.password =libAuth.pwHash(info.password);
-        console.log(info.password);
-        var sql = "INSERT INTO ? VALUES ( 'null', ??, ??, ??, 'null', ??)";
+        var sql = "INSERT INTO ?? VALUES ( null, ?, ?, ?, null, ?)";
         var inserts = ['user', info.username, info.password, info.email, 'admin'];
         sql = global.mysql.format(sql, inserts);
-       global.connection.query(sql, function(err, rows, fields) {
-           console.log(err, rows, fields);
-           if (rows.length) {
-               res.json({
-                   result: 0,
-                   data: rows
-               });
-           }
-           else{
-               res.json({
-                   result: 1,
-                   msg: 'data not exist'
-               });
-           }
-       });
+        //query
+        global.connection.query(sql, function(err, rows, fields) {
+            console.log('err', err);
+        });
 });
 
 module.exports = router;
