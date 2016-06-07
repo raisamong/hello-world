@@ -1,4 +1,4 @@
-angular.module('loginController', [])
+angular.module('loginModule', [])
 .controller('LoginCtrl', ['$scope', 'loginService',
                         function($scope, loginService) {
     var service = new loginService();

@@ -2,7 +2,8 @@ angular.module('pipeApp',[
     "ui.router",
     "ui.bootstrap",
     "ngAnimate",
-    "loginController"
+    "loginModule",
+    "registerModule"
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -15,6 +16,7 @@ angular.module('pipeApp',[
         })
         .state('register', {
             url: '/register',
-            templateUrl: './resources/html/register.html'
+            templateUrl: './resources/html/register.html',
+            controller: 'RegisterCtrl'
         });
 });

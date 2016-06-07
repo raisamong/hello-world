@@ -32,23 +32,30 @@ router.route('/login')
     })
     .put(function(req, res) {
         res.send('Update the book');
-    });
+});
 
-router.use('/register', function (req, res) {
-    global.connection.query( sqlLogin[0] + req.body.username + sqlLogin[1]+ req.body.password +'"', function(err, rows, fields) {
-        if (rows.length) {
-            res.json({
-                result: 0,
-                data: rows
-            });
-        }
-        else{
-            res.json({
-                result: 1,
-                msg: 'data not exist'
-            });
-        }
-    });
+router.route('/register')
+    .post(function (req, res) {
+        var info = libAuth.escape(req.body);
+        var sql = "INSERT INTO ? VALUES ( ??, ??, ??, ??, ??, ??)";
+        var inserts = ['user', null, info.username, libAuth.pwHash(info.username), info.email,
+                        null, 'admin'];
+        sql = global.mysql.format(sql, inserts);
+        global.connection.query(sql, function(err, rows, fields) {
+            console.log(err, rows, fields);
+//            if (rows.length) {
+//                res.json({
+//                    result: 0,
+//                    data: rows
+//                });
+//            }
+//            else{
+//                res.json({
+//                    result: 1,
+//                    msg: 'data not exist'
+//                });
+//            }
+        });
 });
 
 module.exports = router;
