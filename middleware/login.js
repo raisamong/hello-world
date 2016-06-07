@@ -8,15 +8,14 @@ router.route('/login')
     })
     .post(function(req, res) {
         //setup info
-        var info = req.body;
-        info.password = libAuth.pwHash(info.password);
-        var sql = 'SELECT * FROM ?? WHERE ?? = "?" AND ?? = "?"';
+        var info = libAuth.escape(req.body);
+        var sql = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
         var inserts = ['user', 'username', info.username, 'password', info.password];
         sql = global.mysql.format(sql, inserts);
         console.log(sql);
         //query
         global.connection.query(sql, function(err, rows, fields) {
-            if (rows.length) {
+            if (rows && rows.length) {
                 res.json({
                     result: 0,
                     data: rows
@@ -43,7 +42,17 @@ router.route('/register')
         sql = global.mysql.format(sql, inserts);
         //query
         global.connection.query(sql, function(err, rows, fields) {
-            console.log('err', err);
+            if (!err) {
+                res.json({
+                    result: 0
+                });
+            }
+            else {
+                res.json({
+                    result: 1,
+                    msg: 'register failed'
+                });
+            }
         });
 });
 
