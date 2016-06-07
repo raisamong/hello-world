@@ -10,18 +10,13 @@ angular.module('loginModule', [])
         return info;
     }
 
-    $scope.login = function (usernameValid, passwordValid) {
+    $scope.login = function () {
         console.log('login');
-        if (usernameValid && passwordValid) {
-            service.login(genUserInfo()).then(function (res) {
-                console.log(res);
-            }, function (err) {
-                console.log(err);
-            });
-        }
-        else {
-            // invalid username && password
-        }
+        service.login(genUserInfo()).then(function (res) {
+            console.log(res);
+        }, function (err) {
+            console.log(err);
+        });
     };
 }])
 .factory('loginService', function ($http, $q) {

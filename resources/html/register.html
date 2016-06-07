@@ -6,13 +6,18 @@
                 <h1>Register</h1>
                 <div class="form-group">
                     <label for="username">Username * :</label>
-                    <input ng-model="username" type="text" class="form-control"
-                           id="username" name="username">
+                    <input ng-model="username" type="text" class="form-control" required
+                           id="username" name="username" maxlength="10" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="password">Password * :</label>
-                    <input ng-model="password" type="password" class="form-control"
-                           id="password" name="password">
+                    <input ng-model="password" type="password" class="form-control" required
+                           id="password" name="password" maxlength="12" minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="passwordConf">Confirm Password * :</label>
+                    <input ng-model="passwordConf" type="password" class="form-control" required
+                           id="passwordConf" name="passwordConf" maxlength="12" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="email">Email :</label>

@@ -11,18 +11,13 @@ angular.module('registerModule', [])
         return info;
     }
 
-    $scope.register = function (usernameValid, passwordValid) {
+    $scope.register = function () {
         console.log('register');
-        if (usernameValid && passwordValid) {
-            service.register(genUserInfo()).then(function (res) {
-                console.log(res);
-            }, function (err) {
-                console.log(err);
-            });
-        }
-        else {
-            // invalid username && password
-        }
+        service.register(genUserInfo()).then(function (res) {
+            console.log(res);
+        }, function (err) {
+            console.log(err);
+        });
     }
 }])
 .factory('registerService', function ($http, $q) {
