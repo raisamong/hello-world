@@ -35,24 +35,43 @@ router.route('/login')
 
 router.route('/register')
     .post(function (req, res) {
-        //setup info
         var info = libAuth.escape(req.body);
-        var sql = "INSERT INTO ?? VALUES ( null, ?, ?, ?, null, ?)";
-        var inserts = ['user', info.username, info.password, info.email, 'admin'];
-        sql = global.mysql.format(sql, inserts);
+        var inserts, sqlCheck, sqlInsert;
+
+        //setup info check username exist
+        sqlCheck = "SELECT * FROM ?? WHERE ?? = ?";
+        inserts = ['user', 'username', info.username];
+        sqlCheck = global.mysql.format(sqlCheck, inserts);
+
+        //setup info insert
+        sqlInsert = "INSERT INTO ?? VALUES ( null, ?, ?, ?, null, ?)";
+        inserts = ['user', info.username, info.password, info.email, 'admin'];
+        sqlInsert = global.mysql.format(sqlInsert, inserts);
+
         //query
-        global.connection.query(sql, function(err, rows, fields) {
-            if (!err) {
-                res.json({
-                    result: 0
+        global.connection.query(sqlCheck, function(err, rows, fields) {
+            if (!(rows && rows.length)) {
+                global.connection.query(sqlInsert, function(err, rows, fields) {
+                    if (!err) {
+                        res.json({
+                            result: 0
+                        });
+                    }
+                    else {
+                        res.json({
+                            result: 2,
+                            msg: 'register failed'
+                        });
+                    }
                 });
             }
-            else {
+            else{
                 res.json({
                     result: 1,
-                    msg: 'register failed'
+                    msg: 'username exist'
                 });
             }
+
         });
 });
 
