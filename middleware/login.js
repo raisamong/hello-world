@@ -43,21 +43,21 @@ router.route('/register')
         var sql = "INSERT INTO ? VALUES ( 'null', ??, ??, ??, 'null', ??)";
         var inserts = ['user', info.username, info.password, info.email, 'admin'];
         sql = global.mysql.format(sql, inserts);
-//        global.connection.query(sql, function(err, rows, fields) {
-//            console.log(err, rows, fields);
-//            if (rows.length) {
-//                res.json({
-//                    result: 0,
-//                    data: rows
-//                });
-//            }
-//            else{
-//                res.json({
-//                    result: 1,
-//                    msg: 'data not exist'
-//                });
-//            }
-//        });
+       global.connection.query(sql, function(err, rows, fields) {
+           console.log(err, rows, fields);
+           if (rows.length) {
+               res.json({
+                   result: 0,
+                   data: rows
+               });
+           }
+           else{
+               res.json({
+                   result: 1,
+                   msg: 'data not exist'
+               });
+           }
+       });
 });
 
 module.exports = router;
