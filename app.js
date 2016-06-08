@@ -9,6 +9,7 @@ var route = require('./middleware/route.js');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use('/localize', express.static(__dirname + '/localize'));
 app.use('/resources', express.static(__dirname + '/resources'));
 
 app.get('/', function (req, res) {
