@@ -28,10 +28,12 @@
                 <li ><a ui-sref="login" translate="_login_heading">Login</a></li>
                 <li ><a ui-sref="register" translate="_register_heading">Register</a></li>
                 <li class="dropdown">
+
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                       role="button" aria-haspopup="true" aria-expanded="false">{{langSelected}}
+                       role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-globe" aria-hidden="true"></i> {{langSelected}}
                     <span class="caret"></span></a>
-                    <ul class="dropdown-menu" style="min-width:0px;">
+                    <ul class="dropdown-menu" style="min-width:80px;">
                         <li ng-click="changeLang('th')"><a>TH</a></li>
                         <li ng-click="changeLang('en')"><a>EN</a></li>
                     </ul>
