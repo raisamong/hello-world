@@ -13,4 +13,6 @@ var en = {
     '_register_back' : 'Back to Register',
     //login
     '_login_heading' : 'Login',
+    '_login_form_username' : 'Username :',
+    '_login_form_password' : 'Password :',
 };

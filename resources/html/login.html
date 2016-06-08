@@ -1,24 +1,24 @@
-<div class="container">
+<div class="container half-width">
     <!--<div uib-collapse="isCollapsed">-->
         <div class="well well-lg">
             <form role="form" name="loginForm"
                   ng-submit="login()">
-                <h1>Login</h1>
+                <h1 translate="_login_heading"></h1>
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username" translate="_login_form_username"></label>
                     <input ng-model="username" type="text" id="username" required
                            class="form-control" name="username" maxlength="10" minlength="8">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password" translate="_login_form_username"></label>
                     <input ng-model="password" type="password" id="password" required
                            class="form-control" name="password" maxlength="12" minlength="8">
                 </div>
                 <!--<div class="checkbox">-->
                 <!--<label><input type="checkbox"> Remember me</label>-->
                 <!--</div>-->
-                <button type="submit" class="btn btn-default">Submit</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-default" translate="_submit"></button>
+                <button type="reset" class="btn btn-primary" translate="_reset"></button>
             </form>
         </div>
     <!--</div>-->

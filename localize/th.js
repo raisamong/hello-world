@@ -13,4 +13,6 @@ var th = {
     '_register_back' : 'กลับไปลงทะเบียน',
     //login
     '_login_heading' : 'เข้าสู่ระบบ',
+    '_login_form_username' : 'ชื่อผู้ใช้ :',
+    '_login_form_password' : 'รหัสผ่าน :',
 };
