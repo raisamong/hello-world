@@ -1,7 +1,15 @@
 <div class="container">
     <!--<div uib-collapse="isCollapsed">-->
         <div class="well well-lg">
-            <form role="form" name="registerForm"
+            <div class="alert alert-success" role="alert" ng-show="registered">
+                {{regResult}}
+                <a href="#" class="alert-link">Go to Login</a>
+            </div>
+            <div class="alert alert-danger" role="alert" ng-show="registerFailed">
+                {{regResult}}
+                <a href="#" class="alert-link">Back to Register</a>
+            </div>
+            <form role="form" name="registerForm" ng-hide="registered || registerFailed"
                   ng-submit="register(registerForm.username.$valid, registerForm.password.$valid)">
                 <h1>Register</h1>
                 <div class="form-group">
