@@ -29,8 +29,10 @@ angular.module('pipeApp',[
 })
 .controller('indexController', function ($scope, $translate) {
     $scope.langSelected = 'TH';
+    $scope.lang = 'th';
     $scope.changeLang = function (lang) {
         $translate.use(lang);
+        $scope.lang = lang;
         $scope.langSelected =  lang.toUpperCase();
     };
 })

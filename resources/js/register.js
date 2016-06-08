@@ -2,7 +2,6 @@ angular.module('registerModule', [])
 .controller('RegisterCtrl', [ '$scope', 'registerService',
                             function ($scope, registerService) {
     var service = new registerService();
-
     var genUserInfo = function () {
         var info = {
             username : $scope.username,
@@ -12,30 +11,48 @@ angular.module('registerModule', [])
         return info;
     }
 
+    var checkPassword = function () {
+        if ($scope.password != $scope.passwordConf)
+            return false;
+        else
+            return true;
+    };
+
     var genResult = function (output) {
+        //TODO : bug translate
         console.log(output);
         if (output.result == 0) {
             // register success
             $scope.registered = true;
-            $scope.regResult = 'Register Successfully';
+            $scope.regResult = localize[$scope.$parent.lang]._register_result_success;
         }
         else if (output.result == 1) {
             //username exist
             $scope.registerFailed = true;
-            $scope.regResult = 'Username already exist';
+            $scope.regResult = localize[$scope.$parent.lang]._register_result_exist;
         }
         else if (output.result == 2) {
             //register failed
             $scope.registerFailed = true;
-            $scope.regResult = 'Register failed. Please try again'
+            $scope.regResult = localize[$scope.$parent.lang]._register_result_error;
         }
     };
 
     $scope.register = function () {
         console.log('register');
-        service.register(genUserInfo()).then(function (res) {
-            genResult(res);
-        });
+        if (checkPassword()){
+            service.register(genUserInfo()).then(function (res) {
+                genResult(res);
+            });
+        }
+        else {
+            console.log('password mismatch');
+        }
+    };
+
+    $scope.back = function () {
+        $scope.registered = false;
+        $scope.registerFailed = false;
     }
 }])
 .factory('registerService', function ($http, $q) {
