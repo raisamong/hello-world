@@ -27,11 +27,21 @@ angular.module('pipeApp',[
             controller: 'RegisterCtrl'
         });
 })
+.controller('indexController', function ($scope, $translate) {
+    $scope.langSelected = 'TH';
+    $scope.changeLang = function (lang) {
+        $translate.use(lang);
+        $scope.langSelected =  lang.toUpperCase();
+    };
+})
 .factory('langLoader', function($q) {
     return function (options) {
         console.log('langLoader', options);
         var deferred = $q.defer();
-            deferred.resolve(localize.th);
+            if (options.key == "th")
+                deferred.resolve(localize.th);
+            else
+                deferred.resolve(localize.en);
         return deferred.promise;
     };
 });

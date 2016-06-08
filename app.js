@@ -18,9 +18,6 @@ app.get('/', function (req, res) {
 app.get('/new', function (req, res) {
     res.sendFile('resources/html/new.html', { root: __dirname });
 });
-app.get('/index', function (req, res) {
-    res.send('Hello World!');
-});
 
 var setupMysql = function () {
     var connection_object= new db();

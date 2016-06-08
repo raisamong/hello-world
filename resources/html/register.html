@@ -3,37 +3,37 @@
         <div class="well well-lg">
             <div class="alert alert-success" role="alert" ng-show="registered">
                 {{regResult}}
-                <a href="#" class="alert-link">Go to Login</a>
+                <a href="#" class="alert-link" translate="_register_go"></a>
             </div>
             <div class="alert alert-danger" role="alert" ng-show="registerFailed">
                 {{regResult}}
-                <a href="#" class="alert-link" translate="_register_back">Back to Register</a>
+                <a href="#" class="alert-link" translate="_register_back"></a>
             </div>
             <form role="form" name="registerForm" ng-hide="registered || registerFailed"
                   ng-submit="register(registerForm.username.$valid, registerForm.password.$valid)">
-                <h1>Register</h1>
+                <h1 translate="_register_heading"></h1>
                 <div class="form-group">
-                    <label for="username">Username * :</label>
+                    <label for="username" translate="_register_form_username"></label>
                     <input ng-model="username" type="text" class="form-control" required
                            id="username" name="username" maxlength="10" minlength="8">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password * :</label>
+                    <label for="password" translate="_register_form_password"></label>
                     <input ng-model="password" type="password" class="form-control" required
                            id="password" name="password" maxlength="12" minlength="8">
                 </div>
                 <div class="form-group">
-                    <label for="passwordConf">Confirm Password * :</label>
+                    <label for="passwordConf" translate="_register_form_password_conf"></label>
                     <input ng-model="passwordConf" type="password" class="form-control" required
                            id="passwordConf" name="passwordConf" maxlength="12" minlength="8">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email :</label>
+                    <label for="email" translate="_register_form_email"></label>
                     <input ng-model="email" type="email" class="form-control"
                            id="email" name="email">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-default" translate="_submit"></button>
+                <button type="reset" class="btn btn-primary" translate="_reset"></button>
             </form>
         </div>
     <!--</div>-->
