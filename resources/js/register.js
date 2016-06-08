@@ -31,8 +31,6 @@ angular.module('registerModule', [])
         }
     };
 
-    $scope.registerStatus =;
-
     $scope.register = function () {
         console.log('register');
         service.register(genUserInfo()).then(function (res) {
