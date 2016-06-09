@@ -1,7 +1,16 @@
 angular.module('registerModule', [])
 .controller('RegisterCtrl', [ '$scope', 'registerService',
                             function ($scope, registerService) {
+    // TODO add tooltips
+    // <!-- variables defined -->
     var service = new registerService();
+    // <!-- end variables defined -->
+
+    // <!-- $scopes defined -->
+    $scope.viewMain = true;
+    // end $scopes defined -->
+
+    // <!-- variables function defined -->
     var genUserInfo = function () {
         var info = {
             username : $scope.username,
@@ -9,38 +18,48 @@ angular.module('registerModule', [])
             email : $scope.email
         };
         return info;
-    }
+    };
 
     var checkPassword = function () {
-        if ($scope.password != $scope.passwordConf)
-            return false;
-        else
-            return true;
+        if (!$scope.password || !$scope.passwordConf) {
+            return 1;
+        }
+        else if ($scope.password.length < 8 || $scope.passwordConf.length < 8) {
+            return 1;
+        }
+        else if ($scope.password.length > 12 || $scope.passwordConf.length > 12) {
+            return 1;
+        }
+        else if ($scope.password != $scope.passwordConf) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     };
 
     var genResult = function (output) {
-        //TODO : bug translate
         console.log(output);
+        toggleView();
         if (output.result == 0) {
             // register success
-            $scope.registered = true;
-            $scope.regResult = localize[$scope.$parent.lang]._register_result_success;
+            $scope.regResult = 0;
         }
         else if (output.result == 1) {
             //username exist
-            $scope.registerFailed = true;
-            $scope.regResult = localize[$scope.$parent.lang]._register_result_exist;
+            $scope.regResult = 1;
         }
         else if (output.result == 2) {
             //register failed
-            $scope.registerFailed = true;
-            $scope.regResult = localize[$scope.$parent.lang]._register_result_error;
+            $scope.regResult = 2;
         }
     };
+    // <!-- end variables defined -->
 
+    // <!-- $scopes function defined -->
     $scope.register = function () {
         console.log('register');
-        if (checkPassword()){
+        if (!checkPassword()){
             service.register(genUserInfo()).then(function (res) {
                 genResult(res);
             });
@@ -50,10 +69,10 @@ angular.module('registerModule', [])
         }
     };
 
-    $scope.back = function () {
-        $scope.registered = false;
-        $scope.registerFailed = false;
-    }
+    $scope.toggleView = function () {
+        $scope.viewMain = !$scope.viewMain;
+    };
+    // <!-- end $scopes function defined -->
 }])
 .factory('registerService', function ($http, $q) {
     return function () {
