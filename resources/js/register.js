@@ -13,24 +13,24 @@ angular.module('registerModule', [])
     // <!-- variables function defined -->
     var genUserInfo = function () {
         var info = {
-            username : $scope.username,
-            password : $scope.password,
-            email : $scope.email
+            username : $scope.info.username,
+            password : $scope.info.password,
+            email : $scope.info.email
         };
         return info;
     };
 
     var checkPassword = function () {
-        if (!$scope.password || !$scope.passwordConf) {
+        if (!$scope.info.password ) {
             return 1;
         }
-        else if ($scope.password.length < 8 || $scope.passwordConf.length < 8) {
+        else if ($scope.info.password.length < 8 ) {
             return 1;
         }
-        else if ($scope.password.length > 12 || $scope.passwordConf.length > 12) {
+        else if ($scope.info.password.length > 12 ) {
             return 1;
         }
-        else if ($scope.password != $scope.passwordConf) {
+        else if ($scope.info.password != $scope.info.passwordConf) {
             return 1;
         }
         else {
@@ -40,7 +40,7 @@ angular.module('registerModule', [])
 
     var genResult = function (output) {
         console.log(output);
-        toggleView();
+        $scope.toggleView();
         if (output.result == 0) {
             // register success
             $scope.regResult = 0;

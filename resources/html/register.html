@@ -14,22 +14,22 @@
                 <h1 translate="_register_heading"></h1>
                 <div class="form-group">
                     <label for="username" translate="_register_form_username"></label>
-                    <input ng-model="username" type="text" class="form-control" required
+                    <input ng-model="info.username" type="text" class="form-control" required
                            id="username" name="username" maxlength="10" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="password" translate="_register_form_password"></label>
-                    <input ng-model="password" type="password" class="form-control" required
+                    <input ng-model="info.password" type="password" class="form-control" required
                            id="password" name="password" maxlength="12" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="passwordConf" translate="_register_form_password_conf"></label>
-                    <input ng-model="passwordConf" type="password" class="form-control" required
+                    <input ng-model="info.passwordConf" type="password" class="form-control" required
                            id="passwordConf" name="passwordConf" maxlength="12" minlength="8">
                 </div>
                 <div class="form-group">
                     <label for="email" translate="_register_form_email"></label>
-                    <input ng-model="email" type="email" class="form-control"
+                    <input ng-model="info.email" type="email" class="form-control"
                            id="email" name="email">
                 </div>
                 <button type="submit" class="btn btn-default" translate="_submit"></button>
