@@ -15,16 +15,24 @@ router.route('/login')
         console.log(sql);
         //query
         global.connection.query(sql, function(err, rows, fields) {
-            if (rows && rows.length) {
-                res.json({
-                    result: 0,
-                    data: rows
-                });
+            if(!err) {
+                if (rows && rows.length) {
+                    res.json({
+                        result: 0,
+                        data: rows
+                    });
+                }
+                else{
+                    res.json({
+                        result: 1,
+                        msg: 'data not exist'
+                    });
+                }
             }
-            else{
+            else {
                 res.json({
-                    result: 1,
-                    msg: 'data not exist'
+                    result: 2,
+                    msg: 'login failed'
                 });
             }
         });
@@ -50,28 +58,35 @@ router.route('/register')
 
         //query
         global.connection.query(sqlCheck, function(err, rows, fields) {
-            if (!(rows && rows.length)) {
-                global.connection.query(sqlInsert, function(err, rows, fields) {
-                    if (!err) {
-                        res.json({
-                            result: 0
-                        });
-                    }
-                    else {
-                        res.json({
-                            result: 2,
-                            msg: 'register failed'
-                        });
-                    }
-                });
+            if (!err) {
+                if (!(rows && rows.length)) {
+                    global.connection.query(sqlInsert, function(err, rows, fields) {
+                        if (!err) {
+                            res.json({
+                                result: 0
+                            });
+                        }
+                        else {
+                            res.json({
+                                result: 2,
+                                msg: 'register failed'
+                            });
+                        }
+                    });
+                }
+                else{
+                    res.json({
+                        result: 1,
+                        msg: 'username exist'
+                    });
+                }
             }
-            else{
+            else {
                 res.json({
-                    result: 1,
-                    msg: 'username exist'
+                    result: 2,
+                    msg: 'register failed'
                 });
             }
-
         });
 });
 

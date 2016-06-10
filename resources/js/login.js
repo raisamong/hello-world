@@ -1,23 +1,90 @@
 angular.module('loginModule', [])
 .controller('LoginCtrl', ['$scope', 'loginService',
                         function($scope, loginService) {
+    // <!-- variables defined -->
     var service = new loginService();
+    // <!-- end variables defined -->
+
+    // <!-- $scopes defined -->
+    $scope.info = {
+        username : '',
+        password : '',
+    };
+    $scope.toastRes;
+    // <!-- end $scopes defined -->
+
+    // <!-- variables function defined -->
     var genUserInfo = function () {
         var info = {
-            username : $scope.username,
-            password : $scope.password
+            username : $scope.info.username,
+            password : $scope.info.password
         };
         return info;
     }
+    var genResult = function (output) {
+        console.log(output);
+        if (output.result == 0) {
+            // login success
+            $scope.regResult = 0;
+            $scope.toggleView();
+        }
+        else if (output.result == 1) {
+            //username password incorrect
+            $scope.regResult = 1;
+        }
+        else if (output.result == 2) {
+            //login failed
+            $scope.regResult = 2;
+        }
+    };
 
+    var checkUsername = function () {
+        if (!$scope.info.username) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._username_required;
+            $scope.toastRes = 4;
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    };
+
+    var checkPassword = function () {
+        if (!$scope.info.password ) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._password_required;
+            $scope.toastRes = 1;
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    };
+
+    var toastOut = function () {
+        setTimeout( function(){
+            $scope.toastRes = 0;
+        }, 1000);
+    };
+    // <!-- end variables function defined -->
+
+    // <!-- $scopes function defined -->
     $scope.login = function () {
         console.log('login');
-        service.login(genUserInfo()).then(function (res) {
-            console.log(res);
-        }, function (err) {
-            console.log(err);
-        });
+        if (!checkUsername()) {
+            if (!checkPassword()) {
+                service.login(genUserInfo()).then(function (res) {
+                    genResult(res);
+                });
+            }
+            else {
+                toastOut();
+            }
+        }
+        else {
+            toastOut();
+        }
     };
+    // <!-- end $scopes function defined -->
 }])
 .factory('loginService', function ($http, $q) {
     return function (){
@@ -41,7 +108,7 @@ angular.module('loginModule', [])
                     deferred.resolve(data);
                 })
                 .error(function (data, status, headers, config) {
-                    deferred.reject(data);
+                    deferred.resolve(data);
                 });
             return deferred.promise;
         };

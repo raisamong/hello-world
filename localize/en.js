@@ -9,7 +9,7 @@ var en = {
     '_username_long' : 'Password maximum 10 characters',
     //password
     '_password_required' : 'Please type your password',
-    '_password_short' : 'Password at least 6 characters',
+    '_password_short' : 'Password at least 8 characters',
     '_password_mismatch' : 'Password mismatch',
     //register
     '_register_heading' : 'Register',
@@ -26,4 +26,6 @@ var en = {
     '_login_heading' : 'Login',
     '_login_form_username' : 'Username :',
     '_login_form_password' : 'Password :',
+    '_login_result_user_not_exist' : 'Username or Password incorrect',
+    '_login_result_error' : 'Login failed. Please try again'
 };

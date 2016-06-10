@@ -1,7 +1,6 @@
 angular.module('registerModule', [])
 .controller('RegisterCtrl', [ '$scope', 'registerService', '$timeout',
                             function ($scope, registerService, $timeout) {
-    // TODO add tooltips
     // <!-- variables defined -->
     var service = new registerService();
     // <!-- end variables defined -->
@@ -14,7 +13,7 @@ angular.module('registerModule', [])
     };
     $scope.viewMain = true;
     $scope.toastRes;
-    // end $scopes defined -->
+    // <!-- end $scopes defined -->
 
     // <!-- variables function defined -->
     var genUserInfo = function () {
@@ -73,6 +72,7 @@ angular.module('registerModule', [])
         if (output.result == 0) {
             // register success
             $scope.regResult = 0;
+            $scope.toggleView();
         }
         else if (output.result == 1) {
             //username exist
@@ -82,31 +82,32 @@ angular.module('registerModule', [])
             //register failed
             $scope.regResult = 2;
         }
-        $scope.toggleView();
     };
-    // <!-- end variables defined -->
+
+    var toastOut = function () {
+        setTimeout( function(){
+            $scope.toastRes = 0;
+        }, 1000);
+    };
+    // <!-- end variables function defined -->
 
     // <!-- $scopes function defined -->
     $scope.register = function () {
         console.log('register');
-        if (!checkUsername()){
-            if (!checkPassword()){
+        if (!checkUsername()) {
+            if (!checkPassword()) {
                 service.register(genUserInfo()).then(function (res) {
                     genResult(res);
                 });
             }
             else {
                 console.log('password mismatch');
-                setTimeout( function(){
-                    $scope.toastRes = 0;
-                }, 1000);
+                toastOut();
             }
         }
         else {
             console.log('username error');
-            setTimeout( function(){
-                $scope.toastRes = 0;
-            }, 1000);
+            toastOut();
         }
 
     };
