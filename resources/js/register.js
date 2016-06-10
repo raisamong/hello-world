@@ -7,6 +7,11 @@ angular.module('registerModule', [])
     // <!-- end variables defined -->
 
     // <!-- $scopes defined -->
+    $scope.info = {
+        username : '',
+        password : '',
+        email : '',
+    };
     $scope.viewMain = true;
     $scope.toastRes;
     // end $scopes defined -->
@@ -21,21 +26,41 @@ angular.module('registerModule', [])
         return info;
     };
 
+    var checkUsername = function () {
+        if (!$scope.info.username) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._username_required;
+            $scope.toastRes = 4;
+            return 1;
+        }
+        else if ($scope.info.username.length < 8 ) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._username_short;
+            $scope.toastRes = 4;
+            return 1;
+        }
+        else if ($scope.info.username.length > 10 ) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._username_long;
+            $scope.toastRes = 4;
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    };
+
     var checkPassword = function () {
         if (!$scope.info.password ) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._password_required;
             $scope.toastRes = 1;
             return 1;
         }
         else if ($scope.info.password.length < 8 ) {
+            $scope.toastTxt = localize[$scope.$parent.lang]._password_short;
             $scope.toastRes = 2;
             return 1;
         }
-        else if ($scope.info.password.length > 12 ) {
-            $scope.toastRes = 3;
-            return 1;
-        }
         else if ($scope.info.password != $scope.info.passwordConf) {
-            $scope.toastRes = 4;
+            $scope.toastTxt = localize[$scope.$parent.lang]._password_mismatch;
+            $scope.toastRes = 3;
             return 1;
         }
         else {
@@ -64,17 +89,26 @@ angular.module('registerModule', [])
     // <!-- $scopes function defined -->
     $scope.register = function () {
         console.log('register');
-        if (!checkPassword()){
-            service.register(genUserInfo()).then(function (res) {
-                genResult(res);
-            });
+        if (!checkUsername()){
+            if (!checkPassword()){
+                service.register(genUserInfo()).then(function (res) {
+                    genResult(res);
+                });
+            }
+            else {
+                console.log('password mismatch');
+                setTimeout( function(){
+                    $scope.toastRes = 0;
+                }, 1000);
+            }
         }
         else {
-            console.log('password mismatch');
+            console.log('username error');
             setTimeout( function(){
                 $scope.toastRes = 0;
-            }, 3000);
+            }, 1000);
         }
+
     };
 
     $scope.toggleView = function () {

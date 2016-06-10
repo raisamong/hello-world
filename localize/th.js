@@ -3,6 +3,14 @@ var th = {
     '_submit' : 'ยืนยัน',
     '_reset' : 'ล้าง',
     '_cancel' : 'ยกเลิก',
+    //username
+    '_username_required' : 'กรุณาพิมพ์รหัสผ่านชื่อผู้ใช้',
+    '_username_short' : 'ชื่อผู้ใช้อย่างน้อย 8 ตัวอักษร',
+    '_username_long' : 'ชื่อผู้ใช้อย่างมาก 10 ตัวอักษร',
+    //password
+    '_password_required' : 'กรุณาพิมพ์รหัสผ่าน',
+    '_password_short' : 'รหัสผ่านอย่างน้อย 6 ตัวอักษร',
+    '_password_mismatch' : 'รหัสผ่านไม่ตรงกัน',
     //register
     '_register_heading' : 'ลงทะเบียน',
     '_register_form_username' : 'ชื่อผู้ใช้ * :',

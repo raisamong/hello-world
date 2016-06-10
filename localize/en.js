@@ -3,6 +3,14 @@ var en = {
     '_submit' : 'Submit',
     '_reset' : 'Reset',
     '_cancel' : 'Cancel',
+    //username
+    '_username_required' : 'Please type your username',
+    '_username_short' : 'Username at least 8 characters',
+    '_username_long' : 'Password maximum 10 characters',
+    //password
+    '_password_required' : 'Please type your password',
+    '_password_short' : 'Password at least 6 characters',
+    '_password_mismatch' : 'Password mismatch',
     //register
     '_register_heading' : 'Register',
     '_register_form_username' : 'Username * :',

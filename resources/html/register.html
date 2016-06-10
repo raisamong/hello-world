@@ -10,23 +10,30 @@
                 <a ng-click="toggleView()" class="alert-link" translate="_register_back"></a>
             </div>
             <form role="form" name="registerForm" ng-show="viewMain"
-                  ng-submit="register(registerForm.username.$valid, registerForm.password.$valid)">
+                  ng-submit="register()">
                 <h1 translate="_register_heading"></h1>
                 <div class="form-group">
                     <label for="username" translate="_register_form_username"></label>
-                    <input ng-model="info.username" type="text" class="form-control" required
-                           id="username" name="username" maxlength="10" minlength="8">
+                    <span uib-tooltip="{{toastTxt}}" tooltip-is-open="toastRes==4"
+                          tooltip-placement="right" tooltip-enable="toastRes==4">
+                        <input ng-model="info.username" type="text" class="form-control"
+                               id="username" name="username" >
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="password" translate="_register_form_password"></label>
-                    <input ng-model="info.password" type="password" class="form-control" required
-                           id="password" name="password" maxlength="12" minlength="8">
+                    <span uib-tooltip="{{toastTxt}}" tooltip-is-open="toastRes==1 || toastRes==2"
+                          tooltip-placement="right" tooltip-enable="toastRes==1 || toastRes==2">
+                        <input ng-model="info.password" type="password" class="form-control"
+                               id="password" name="password" >
+                    </span>
                 </div>
                 <div class="form-group">
                     <label for="passwordConf" translate="_register_form_password_conf"></label>
-                    <span uib-tooltip="Password Mismatch!" tooltip-is-open="toastRes==4" tooltip-placement="right">
-                        <input ng-model="info.passwordConf" type="password" class="form-control" required
-                               id="passwordConf" name="passwordConf" maxlength="12" minlength="8">
+                    <span uib-tooltip="{{toastTxt}}" tooltip-is-open="toastRes==3"
+                          tooltip-placement="right" tooltip-enable="toastRes==3">
+                        <input ng-model="info.passwordConf" type="password" class="form-control"
+                               id="passwordConf" name="passwordConf">
                     </span>
                 </div>
                 <div class="form-group">
