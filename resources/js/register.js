@@ -1,6 +1,6 @@
 angular.module('registerModule', [])
-.controller('RegisterCtrl', [ '$scope', 'registerService',
-                            function ($scope, registerService) {
+.controller('RegisterCtrl', [ '$scope', 'registerService', '$timeout',
+                            function ($scope, registerService, $timeout) {
     // TODO add tooltips
     // <!-- variables defined -->
     var service = new registerService();
@@ -8,6 +8,7 @@ angular.module('registerModule', [])
 
     // <!-- $scopes defined -->
     $scope.viewMain = true;
+    $scope.toastRes;
     // end $scopes defined -->
 
     // <!-- variables function defined -->
@@ -22,15 +23,19 @@ angular.module('registerModule', [])
 
     var checkPassword = function () {
         if (!$scope.info.password ) {
+            $scope.toastRes = 1;
             return 1;
         }
         else if ($scope.info.password.length < 8 ) {
+            $scope.toastRes = 2;
             return 1;
         }
         else if ($scope.info.password.length > 12 ) {
+            $scope.toastRes = 3;
             return 1;
         }
         else if ($scope.info.password != $scope.info.passwordConf) {
+            $scope.toastRes = 4;
             return 1;
         }
         else {
@@ -40,7 +45,6 @@ angular.module('registerModule', [])
 
     var genResult = function (output) {
         console.log(output);
-        $scope.toggleView();
         if (output.result == 0) {
             // register success
             $scope.regResult = 0;
@@ -53,6 +57,7 @@ angular.module('registerModule', [])
             //register failed
             $scope.regResult = 2;
         }
+        $scope.toggleView();
     };
     // <!-- end variables defined -->
 
@@ -66,6 +71,9 @@ angular.module('registerModule', [])
         }
         else {
             console.log('password mismatch');
+            setTimeout( function(){
+                $scope.toastRes = 0;
+            }, 3000);
         }
     };
 
