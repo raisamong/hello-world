@@ -27,5 +27,8 @@ var en = {
     '_login_form_username' : 'Username :',
     '_login_form_password' : 'Password :',
     '_login_result_user_not_exist' : 'Username or Password incorrect',
-    '_login_result_error' : 'Login failed. Please try again'
+    '_login_result_error' : 'Login failed. Please try again',
+    //dashboard
+    '_dashboard_heading' : 'Dashboard',
+
 };

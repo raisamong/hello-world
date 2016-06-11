@@ -16,7 +16,9 @@ router.route('/login')
         //query
         global.connection.query(sql, function(err, rows, fields) {
             if(!err) {
+                //TODO return employee code
                 if (rows && rows.length) {
+                    console.log(rows);
                     res.json({
                         result: 0,
                         data: rows

@@ -1,6 +1,6 @@
 angular.module('loginModule', [])
-.controller('LoginCtrl', ['$scope', 'loginService',
-                        function($scope, loginService) {
+.controller('LoginCtrl', ['$scope', '$rootScope', '$state', 'loginService',
+                        function($scope, $rootScope, $state, loginService) {
     // <!-- variables defined -->
     var service = new loginService();
     // <!-- end variables defined -->
@@ -26,7 +26,7 @@ angular.module('loginModule', [])
         if (output.result == 0) {
             // login success
             $scope.regResult = 0;
-            $scope.toggleView();
+            loginSuccess(output.data);
         }
         else if (output.result == 1) {
             //username password incorrect
@@ -65,6 +65,17 @@ angular.module('loginModule', [])
             $scope.toastRes = 0;
         }, 1000);
     };
+
+    var loginSuccess = function (userInfo) {
+        genCurrentUser(userInfo);
+        $scope.$parent.registered = true;
+        $state.go('dashboard');
+    }
+
+    var genCurrentUser = function (info) {
+        $rootScope.profile = info;
+        console.log($rootScope.profile);
+    }
     // <!-- end variables function defined -->
 
     // <!-- $scopes function defined -->

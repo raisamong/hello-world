@@ -27,5 +27,7 @@ var th = {
     '_login_form_username' : 'ชื่อผู้ใช้ :',
     '_login_form_password' : 'รหัสผ่าน :',
     '_login_result_user_not_exist' : 'ชื่อผู้ใช้หรือรหัสผ่าน ไม่ถูกต้อง',
-    '_login_result_error' : 'เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง'
+    '_login_result_error' : 'เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง',
+    //dashboard
+    '_dashboard_heading' : 'จัดการข้อมูล',
 };

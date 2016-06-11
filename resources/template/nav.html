@@ -25,8 +25,9 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li style="margin-top: 10px;"> <img src="http://findicons.com/files/icons/2226/matte_basic/32/img_landscape.png"/> </li>
-                <li ><a ui-sref="login" translate="_login_heading">Login</a></li>
-                <li ><a ui-sref="register" translate="_register_heading">Register</a></li>
+                <li ng-show="!registered"><a ui-sref="login" translate="_login_heading"></a></li>
+                <li ng-show="registered"><a ui-sref="dashboard" translate="_dashboard_heading"></a></li>
+                <li ><a ui-sref="register" translate="_register_heading"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                        role="button" aria-haspopup="true" aria-expanded="false">

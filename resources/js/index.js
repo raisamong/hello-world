@@ -30,6 +30,7 @@ angular.module('pipeApp',[
 .controller('indexController', function ($scope, $translate) {
     $scope.langSelected = 'TH';
     $scope.lang = 'th';
+    $scope.registered;
     $scope.changeLang = function (lang) {
         $translate.use(lang);
         $scope.lang = lang;
