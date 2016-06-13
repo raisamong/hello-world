@@ -21,7 +21,7 @@ router.route('/login')
                     console.log(rows);
                     res.json({
                         result: 0,
-                        data: rows
+                        data: rows[0]
                     });
                 }
                 else{

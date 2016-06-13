@@ -7,7 +7,8 @@ angular.module('pipeApp',[
     "ngAnimate",
     "pascalprecht.translate",
     "loginModule",
-    "registerModule"
+    "registerModule",
+    "dashboardModule"
 ])
 .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $translateProvider.useLoader('langLoader', {});
@@ -25,6 +26,11 @@ angular.module('pipeApp',[
             url: '/register',
             templateUrl: './resources/html/register.html',
             controller: 'RegisterCtrl'
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: './resources/html/dashboard.html',
+            controller: 'DashboardCtrl'
         });
 })
 .controller('indexController', function ($scope, $translate) {

@@ -20,7 +20,8 @@ angular.module('loginModule', [])
             password : $scope.info.password
         };
         return info;
-    }
+    };
+
     var genResult = function (output) {
         console.log(output);
         if (output.result == 0) {
