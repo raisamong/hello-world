@@ -8,7 +8,8 @@ angular.module('pipeApp',[
     "pascalprecht.translate",
     "loginModule",
     "registerModule",
-    "dashboardModule"
+    "dashboardModule",
+    "settingModule"
 ])
 .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $translateProvider.useLoader('langLoader', {});
@@ -31,6 +32,11 @@ angular.module('pipeApp',[
             url: '/dashboard',
             templateUrl: './resources/html/dashboard.html',
             controller: 'DashboardCtrl'
+        })
+        .state('dashboard.setting', {
+            url: '/setting',
+            templateUrl: './resources/html/setting.html',
+            controller: 'SettingCtrl'
         });
 })
 .controller('indexController', function ($scope, $translate) {
