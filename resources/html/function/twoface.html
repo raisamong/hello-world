@@ -1,1 +1,16 @@
-<h1>two face</h1>
+<div class="panel panel-default - animated fadeIn">
+    <div class="panel-heading">
+        <h3 class="panel-title" >Two-face Report</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-6">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="dt" is-open="true"  ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+        <uib-timepicker ng-model="mytime" show-spinners="false" ng-change="changed()" show-meridian="false"></uib-timepicker>
+    </div>
+</div>
