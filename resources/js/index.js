@@ -9,7 +9,8 @@ angular.module('pipeApp',[
     "loginModule",
     "registerModule",
     "dashboardModule",
-    "settingModule"
+    "settingModule",
+    "twofaceModule"
 ])
 .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $translateProvider.useLoader('langLoader', {});
@@ -37,6 +38,10 @@ angular.module('pipeApp',[
             url: '/setting',
             templateUrl: './resources/html/setting.html',
             controller: 'SettingCtrl'
+        })
+        .state('dashboard.twoface', {
+            url: '/twoface',
+            templateUrl: './resources/html/function/twoface.html',
         });
 })
 .controller('indexController', function ($scope, $translate) {
