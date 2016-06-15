@@ -30,5 +30,7 @@ var en = {
     '_login_result_error' : 'Login failed. Please try again',
     //dashboard
     '_dashboard_heading' : 'Dashboard',
-
+    //functions
+    '_function_setting' : 'Settings',
+    '_function_twoface' : 'Two-Face Report'
 };

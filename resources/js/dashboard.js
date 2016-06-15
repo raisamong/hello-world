@@ -9,4 +9,19 @@ angular.module('dashboardModule', [])
 //    }
 //
 //    checkCurrentUser();
-}]);
+    $scope.functions = ['setting','twoface'];
+}])
+.directive('functionItem', function () {
+    return {
+        restrict: 'E',
+        templateUrl: './resources/html/directive/function.item.html',
+        scope: {
+            functions : '='
+        },
+        controller : function ($scope) {
+            $scope.select = function (item) {
+                $scope.selected = item;
+            };
+        }
+    }
+});

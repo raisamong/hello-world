@@ -30,4 +30,7 @@ var th = {
     '_login_result_error' : 'เข้าสู่ระบบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง',
     //dashboard
     '_dashboard_heading' : 'จัดการข้อมูล',
+    //functions
+    '_function_setting' : 'ตั้งค่า',
+    '_function_twoface' : 'รายงานการพบลูกค้า',
 };
