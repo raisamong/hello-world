@@ -59,4 +59,13 @@ angular.module('pipeApp',[
                 deferred.resolve(localize.en);
         return deferred.promise;
     };
+})
+.service('userService', function () {
+    var user = {};
+    this.setUser = function (info) {
+        user.profile = info;
+    };
+    this.getUser = function () {
+        return user;
+    };
 });

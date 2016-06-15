@@ -1,11 +1,12 @@
 angular.module('dashboardModule', [])
-.controller('DashboardCtrl', [ '$scope', '$rootScope', '$state',
-                                function ($scope, $rootScope, $state) {
-//    var checkCurrentUser = function () {
-//        if (!$rootScope.profile) {
-//            $state.go('login');
-//        }
-//    }
-//
-//    checkCurrentUser();
+.controller('DashboardCtrl', [ '$scope', '$state', 'userService',
+                                function ($scope, $state, userService) {
+    var checkCurrentUser = function () {
+        var user = userService.getUser();
+        if (!user.profile) {
+            $state.go('login');
+        }
+    }
+
+    checkCurrentUser();
 }]);

@@ -1,6 +1,6 @@
 angular.module('loginModule', [])
-.controller('LoginCtrl', ['$scope', '$rootScope', '$state', 'loginService',
-                        function($scope, $rootScope, $state, loginService) {
+.controller('LoginCtrl', ['$scope', '$state', 'loginService', 'userService',
+                        function($scope, $state, loginService, userService) {
     // <!-- variables defined -->
     var service = new loginService();
     // <!-- end variables defined -->
@@ -74,8 +74,8 @@ angular.module('loginModule', [])
     }
 
     var genCurrentUser = function (info) {
-        $rootScope.profile = info;
-        console.log($rootScope.profile);
+        userService.setUser(info);
+        console.log(userService.user);
     }
     // <!-- end variables function defined -->
 
