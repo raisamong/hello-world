@@ -1,7 +1,8 @@
 angular.module('twofaceModule', [])
-.controller('TwofaceCtrl', [ '$scope',
-                                function () {
-     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-      $scope.format = $scope.formats[0];
-
+.controller('TwofaceCtrl', ['$scope',
+                            function ($scope) {
+    $scope.info = {};
+    $scope.test = function () {
+        console.log('eeee', $scope.info.date);
+    }
 }]);

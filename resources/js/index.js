@@ -42,6 +42,7 @@ angular.module('pipeApp',[
         .state('dashboard.twoface', {
             url: '/twoface',
             templateUrl: './resources/html/function/twoface.html',
+            controller: 'TwofaceCtrl'
         });
 })
 .controller('indexController', function ($scope, $translate) {

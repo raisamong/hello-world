@@ -5,19 +5,22 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-8">
-
+                <button ng-click="test()">ada</button>
             </div>
             <div class="col-md-4">
                 <div class="row">
                     <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="dt" is-open="true"  ng-required="true" close-text="Close" />
+                        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                               ng-model="info.date" is-open="calendar" />
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="calendar = !calendar">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
                         </span>
                     </p>
                 </div>
                 <div class="row">
-                    <uib-timepicker ng-model="mytime" show-spinners="false" ng-change="changed()" show-meridian="false"></uib-timepicker>
+                    <uib-timepicker ng-model="info.date" show-spinners="false" show-meridian="false"></uib-timepicker>
                 </div>
             </div>
         </div>
