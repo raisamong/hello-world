@@ -1,25 +1,22 @@
 var express = require('express');
 var app = express();
+var _ = require('lodash');
 var mysql = require('mysql');
 var db = require('./db.js');
 var bodyParser = require('body-parser');
-
-var login = require('./middleware/login.js');
+var route = require('./middleware/route.js');
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded body
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use('/localize', express.static(__dirname + '/localize'));
 app.use('/resources', express.static(__dirname + '/resources'));
-app.use('/', login);
 
 app.get('/', function (req, res) {
     res.sendFile('resources/html/index.html', { root: __dirname });
 });
 app.get('/new', function (req, res) {
     res.sendFile('resources/html/new.html', { root: __dirname });
-});
-app.get('/index', function (req, res) {
-    res.send('Hello World!');
 });
 
 var setupMysql = function () {
@@ -28,6 +25,16 @@ var setupMysql = function () {
     return connection;
 };
 
+var setupRoute = function () {
+    _.forEach(route ,function(path) {
+      var module = require(path);
+      app.use('/', module);
+    });
+}
+
+setupRoute();
 global.connection = setupMysql();
+global.mysql = mysql;
+global._ = _;
 
 module.exports = app;

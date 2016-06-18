@@ -1,0 +1,16 @@
+<!--<li role="presentation" ng-class="{'active' : selected=='setting'}"><a ui-sref="dashboard.setting">Setting</a></li>-->
+<!--<li role="presentation" ng-class="{'active' : selected=='twoface'}"><a ui-sref="dashboard.twoface">Two-Face</a></li>-->
+<!--<li role="presentation"><a href="#">Messages</a></li>-->
+<ul class="nav nav-pills">
+
+    <!--<li "><a href="#">Profile</a></li>-->
+    <!--<li role="presentation"><a href="#">Messages</a></li>-->
+</ul>
+<ul class="list-group">
+    <li ui-sref="{{'dashboard.'+item}}" ng-repeat="item in functions"
+        class="list-group-item function-li" ng-class="{'active': selected == item}"
+        ng-click="select(item)" translate="{{'_function_'+item}}">
+        {{item}}
+    </li>
+</ul>
+

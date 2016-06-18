@@ -1,22 +1,40 @@
-<div>
-    <div uib-collapse="isCollapsed">
+<div class="container half-width - animated fadeIn">
+    <!--<div uib-collapse="isCollapsed">-->
         <div class="well well-lg">
-            <form role="form">
-                <h1>Login</h1>
+            <form role="form" name="loginForm"
+                  ng-submit="login()">
+                <h1 translate="_login_heading"></h1>
                 <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input ng-model="email" type="email" class="form-control" id="email">
+                    <label for="username" translate="_login_form_username"></label>
+                    <span uib-tooltip="{{toastTxt}}" tooltip-is-open="toastRes==4"
+                          tooltip-placement="right" tooltip-enable="toastRes==4">
+                        <input ng-model="info.username" type="text" id="username"
+                            class="form-control" name="username" >
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input ng-model="password" type="password" class="form-control" id="pwd">
+                    <label for="password" translate="_login_form_password"></label>
+                    <span uib-tooltip="{{toastTxt}}" tooltip-is-open="toastRes==1"
+                          tooltip-placement="right" tooltip-enable="toastRes==1">
+                        <input ng-model="info.password" type="password" id="password"
+                               class="form-control" name="password" >
+                    </span>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
+                <!--<div class="checkbox">-->
+                <!--<label><input type="checkbox"> Remember me</label>-->
+                <!--</div>-->
+                <div class="alert alert-danger alert-dismissible - animated bounceIn" role="alert" ng-show="regResult">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <span translate="{{(regResult==1)?'_login_result_user_not_exist':'_login_result_error'}}">{{regResult}}</span>
                 </div>
-                <button ng-click="login()" class="btn btn-default">Submit</button>
-                <button type="reset" class="btn btn-primary">Reset</button>
+
+                <button type="submit" class="btn btn-default" translate="_submit"></button>
+                <button type="reset" class="btn btn-primary" translate="_reset"></button>
             </form>
         </div>
-    </div>
+    <!--</div>-->
 </div>
+

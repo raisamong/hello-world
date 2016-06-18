@@ -1,57 +1,77 @@
+var localize = { 'en' : en , 'th': th };
+
 angular.module('pipeApp',[
     "ui.router",
     "ui.bootstrap",
-    "ngAnimate"
+    "ngSanitize",
+    "ngAnimate",
+    "pascalprecht.translate",
+    "loginModule",
+    "registerModule",
+    "dashboardModule",
+    "settingModule",
+    "twofaceModule"
 ])
-.controller('dashboardController', ['$scope', '$http', '$q',
-                                 function($scope, $http, $q) {
-    String.prototype.hashCode = function() {
-      var hash = 0, i, chr, len;
-      if (this.length === 0) return hash;
-      for (i = 0, len = this.length; i < len; i++) {
-        chr   = this.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-      }
-      return hash;
-    };
-    $scope.isCollapsed = true;
-    $scope.test = "what the fuck";
-
-    $scope.login = function () {
-        console.log('test http');
-        $http({
-            method: 'POST',
-            url: 'http://localhost:4000/login',
-            headers: {
-                "Content-type": "application/json;charset=UTF-8",
-                "access-control-allow-origin": " *"
-            },
-            data: JSON.stringify({
-                email: $scope.email,
-                password: $scope.password
-            })
-        }).success(function (data, status, headers, config) {
-            console.log('success', data);
-//            $scope.username = data.data[0].username;
-//            $scope.email = data.data[0].email;
-//            $scope.role = data.data[0].role;
-        }).
-        error(function (data, status, headers, config) {
-            console.log('error', data);
-        });
-    };
-}]).config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
+    $translateProvider.useLoader('langLoader', {});
+    $translateProvider.preferredLanguage('th');
+    $translateProvider.useSanitizeValueStrategy('sanitize');
 
     $urlRouterProvider.otherwise('/');
-
     $stateProvider.
         state('login', {
             url: '/login',
-            templateUrl: './resources/html/login.html'
+            templateUrl: './resources/html/login.html',
+            controller: 'LoginCtrl'
         })
         .state('register', {
             url: '/register',
-            templateUrl: './resources/html/register.html'
+            templateUrl: './resources/html/register.html',
+            controller: 'RegisterCtrl'
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: './resources/html/dashboard.html',
+            controller: 'DashboardCtrl'
+        })
+        .state('dashboard.setting', {
+            url: '/setting',
+            templateUrl: './resources/html/setting.html',
+            controller: 'SettingCtrl'
+        })
+        .state('dashboard.twoface', {
+            url: '/twoface',
+            templateUrl: './resources/html/function/twoface.html',
+            controller: 'TwofaceCtrl'
         });
+})
+.controller('indexController', function ($scope, $translate) {
+    $scope.langSelected = 'TH';
+    $scope.lang = 'th';
+    $scope.registered;
+    $scope.changeLang = function (lang) {
+        $translate.use(lang);
+        $scope.lang = lang;
+        $scope.langSelected =  lang.toUpperCase();
+    };
+})
+.factory('langLoader', function($q) {
+    return function (options) {
+        console.log('langLoader', options);
+        var deferred = $q.defer();
+            if (options.key == "th")
+                deferred.resolve(localize.th);
+            else
+                deferred.resolve(localize.en);
+        return deferred.promise;
+    };
+})
+.service('userService', function () {
+    var user = {};
+    this.setUser = function (info) {
+        user.profile = info;
+    };
+    this.getUser = function () {
+        return user;
+    };
 });
