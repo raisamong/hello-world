@@ -1,33 +1,24 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="col-md-7">
-
+        <div class="col-md-2">
+            <label>Date:</label>
         </div>
-        <div class="col-md-5">
-            <div class="row">
-                <div class="col-md-2">
-                    <label>Date:</label>
-                </div>
-                <div class="col-md-10">
-                    <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
-                               ng-model="info.date" is-open="calendar"  />
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="calendar = !calendar">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                </button>
-                            </span>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <label>Time:</label>
-                </div>
-                <div class="col-md-2">
-                    <uib-timepicker ng-model="info.date" show-spinners="false" show-meridian="false"></uib-timepicker>
-                </div>
-            </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                       ng-model="info.date" is-open="calendar"  />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar = !calendar">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+        <div class="col-md-1">
+            <label>Time:</label>
+        </div>
+        <div class="col-md-2">
+            <uib-timepicker ng-model="info.date" show-spinners="false" show-meridian="false"></uib-timepicker>
         </div>
     </div>
 </div>
