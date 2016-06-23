@@ -1,96 +1,39 @@
 <div class="row" style="margin-bottom:10px;">
     <div class="col-md-12">
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <label>Contact Persons</label>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">1</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">2</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">3</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
+        <div class="col-md-2">
+            <label>Contact</label>
         </div>
         <div class="col-md-3">
-            <div class="col-md-12">
-                <label>Position</label>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">1</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">2</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">3</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
+            <button type="button" class="btn btn-default" ng-click="addContact()"
+                    ng-show="info.contacts.length < 3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
         </div>
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <label>Mobile Phone</label>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">1</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">2</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">3</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <label>Email Address</label>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">1</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">2</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="input-group">
-                    <span class="input-group-addon">3</span>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-        </div>
+        <!--<div class="col-md-3">-->
+            <!--<div class="col-md-12">-->
+                <!--<label>Contact Persons</label>-->
+            <!--</div>-->
+            <!--<div class="col-md-12">-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">1</span>-->
+                    <!--<input type="text" class="form-control">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-12">-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">2</span>-->
+                    <!--<input type="text" class="form-control">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-12">-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon">3</span>-->
+                    <!--<input type="text" class="form-control">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="col-md-12" ng-repeat="contact in info.contacts">
+        {{contact.name}}
     </div>
 </div>
