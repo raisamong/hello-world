@@ -10,7 +10,7 @@ function db() {
         host     : 'localhost',
         user     : 'raisamong',
         password : 'loveyuri55',
-        database : 'testdb'
+        database : 'ptn'
     });
 	this.connection=con;
 }
