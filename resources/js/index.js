@@ -69,7 +69,9 @@ angular.module('pipeApp',[
 .service('userService', function () {
     var user = {};
     this.setUser = function (info) {
-        user.profile = info;
+        user.access = info.access;
+        user.role = info.role;
+        user.profiles = info.profiles;
     };
     this.getUser = function () {
         return user;

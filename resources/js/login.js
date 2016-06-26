@@ -1,6 +1,16 @@
 angular.module('loginModule', [])
 .controller('LoginCtrl', ['$scope', '$state', 'loginService', 'userService',
                         function($scope, $state, loginService, userService) {
+    // <!-- initial function -->
+    var checkLogin = function () {
+        var user = userService.getUser();
+        console.log(user);
+        if (user.profiles) {
+            $state.go('dashboard');
+        }
+    };
+    checkLogin();
+    // <!-- end initial function -->
     // <!-- variables defined -->
     var service = new loginService();
     // <!-- end variables defined -->
@@ -75,7 +85,7 @@ angular.module('loginModule', [])
 
     var genCurrentUser = function (info) {
         userService.setUser(info);
-        console.log(userService.user);
+        console.log(userService.getUser());
     }
     // <!-- end variables function defined -->
 

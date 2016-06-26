@@ -7,21 +7,39 @@ router.route('/login')
         res.send('Get a random book');
     })
     .post(function(req, res) {
-        //setup info
+        //setup search user
         var info = libAuth.escape(req.body);
-        var sql = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
-        var inserts = ['user', 'username', info.username, 'password', info.password];
-        sql = global.mysql.format(sql, inserts);
-        console.log(sql);
+        var inserts, sqlSeacrh, sqlDataReturn;
+        sqlSeacrh = 'SELECT * FROM ?? WHERE ?? = ? AND ?? = ?';
+        inserts = ['users', 'username', info.username, 'password', info.password];
+        sqlSeacrh = global.mysql.format(sqlSeacrh, inserts);
+
+        //
+        sqlDataReturn = 'SELECT * FROM ?? WHERE ?? = ?';
+        inserts = ['profiles', 'pid'];
         //query
-        global.connection.query(sql, function(err, rows, fields) {
+        global.connection.query(sqlSeacrh, function(err, rows, fields) {
             if(!err) {
-                //TODO return employee code
                 if (rows && rows.length) {
-                    console.log(rows);
-                    res.json({
-                        result: 0,
-                        data: rows[0]
+                    inserts.push(rows[0].pid);
+                    sqlDataReturn = global.mysql.format(sqlDataReturn, inserts);
+                    global.connection.query(sqlDataReturn, function(err, rowsData, fields) {
+                        if(!err) {
+                            res.json({
+                                result: 0,
+                                data: {
+                                    access: rows[0].access,
+                                    role: rows[0].role,
+                                    profiles: rowsData[0]
+                                }
+                            });
+                        }
+                        else {
+                            res.json({
+                                result: 2,
+                                msg: 'get profiles failed ' + err
+                            });
+                        }
                     });
                 }
                 else{
@@ -34,7 +52,7 @@ router.route('/login')
             else {
                 res.json({
                     result: 2,
-                    msg: 'login failed'
+                    msg: 'login failed ' + err
                 });
             }
         });
