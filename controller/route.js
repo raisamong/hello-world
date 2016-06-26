@@ -1,4 +1,4 @@
 var route = [
-    './controller/login.js'
+    './controller/user.js'
 ];
 module.exports = route;

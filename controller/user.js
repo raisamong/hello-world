@@ -50,14 +50,14 @@ router.route('/register')
 
         //setup info check username exist
         sqlCheck = "SELECT * FROM ?? WHERE ?? = ?";
-        inserts = ['user', 'username', info.username];
+        inserts = ['users', 'username', info.username];
         sqlCheck = global.mysql.format(sqlCheck, inserts);
 
         //setup info insert
-        sqlInsert = "INSERT INTO ?? VALUES ( null, ?, ?, ?, null, ?)";
-        inserts = ['user', info.username, info.password, info.email, 'admin'];
-        sqlInsert = global.mysql.format(sqlInsert, inserts);
 
+        sqlInsert = "INSERT INTO ?? VALUES (null, ?, ?, ?, ?, ?, null)";
+        inserts = ['users', info.username, info.password, info.access, 1, 'admin'];
+        sqlInsert = global.mysql.format(sqlInsert, inserts);
         //query
         global.connection.query(sqlCheck, function(err, rows, fields) {
             if (!err) {
@@ -71,7 +71,7 @@ router.route('/register')
                         else {
                             res.json({
                                 result: 2,
-                                msg: 'register failed'
+                                msg: 'insert failed ' + err
                             });
                         }
                     });
@@ -86,7 +86,7 @@ router.route('/register')
             else {
                 res.json({
                     result: 2,
-                    msg: 'register failed'
+                    msg: 'check failed ' + err
                 });
             }
         });

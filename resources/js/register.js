@@ -133,7 +133,7 @@ angular.module('registerModule', [])
                     data: {
                         username : info.username,
                         password : info.password,
-                        email: info.email,
+                        access: info.username,
                     }
                 })
                 .success(function (data, status, headers, config) {
