@@ -1,4 +1,4 @@
-<div class="row" style="margin-bottom:10px;">
+<div class="row subject">
     <div class="col-md-12">
         <div class="col-md-2">
             <label>Contact</label>
@@ -9,31 +9,19 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
         </div>
-        <!--<div class="col-md-3">-->
-            <!--<div class="col-md-12">-->
-                <!--<label>Contact Persons</label>-->
-            <!--</div>-->
-            <!--<div class="col-md-12">-->
-                <!--<div class="input-group">-->
-                    <!--<span class="input-group-addon">1</span>-->
-                    <!--<input type="text" class="form-control">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-12">-->
-                <!--<div class="input-group">-->
-                    <!--<span class="input-group-addon">2</span>-->
-                    <!--<input type="text" class="form-control">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-12">-->
-                <!--<div class="input-group">-->
-                    <!--<span class="input-group-addon">3</span>-->
-                    <!--<input type="text" class="form-control">-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
-    <div class="col-md-12" ng-repeat="contact in info.contacts">
-        {{contact.name}}
+    <div class="col-md-12" ng-show="info.contacts.length">
+        <div class="col-md-1">NO.</div>
+        <div class="col-md-3">NAME</div>
+        <div class="col-md-3">POSITION</div>
+        <div class="col-md-2">TEL</div>
+        <div class="col-md-3">EMAIL</div>
+    </div>
+    <div class="col-md-12" ng-repeat="contact in info.contacts track by $index">
+        <div class="col-md-1 contact-text">{{$index + 1}}</div>
+        <div class="col-md-3 contact-text">{{contact.name}}</div>
+        <div class="col-md-3 contact-text">{{contact.position}}</div>
+        <div class="col-md-2 contact-text">{{contact.tel}}</div>
+        <div class="col-md-3 contact-text">{{contact.email}}</div>
     </div>
 </div>

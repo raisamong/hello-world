@@ -1,0 +1,20 @@
+.subject-first {
+    margin-bottom:10px;
+    border: 1px solid #989898; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+.subject {
+    margin-bottom:10px;
+    border: 1px solid #989898;
+    border-top: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+.contact-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
