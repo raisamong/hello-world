@@ -9,7 +9,7 @@ angular.module('dashboardModule', [])
 //    }
 //
 //    checkCurrentUser();
-    $scope.functions = ['setting','twoface'];
+    $scope.functions = ['setting', 'twoface', 'unregcustomer'];
 }])
 .directive('functionItem', function () {
     return {

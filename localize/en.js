@@ -32,5 +32,6 @@ var en = {
     '_dashboard_heading' : 'Dashboard',
     //functions
     '_function_setting' : 'Settings',
-    '_function_twoface' : 'Two-Face Report'
+    '_function_twoface' : 'Two-Face Report',
+    '_function_unregcustomer' : 'Unregistered Customers'
 };

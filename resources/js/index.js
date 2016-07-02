@@ -10,7 +10,8 @@ angular.module('pipeApp',[
     "registerModule",
     "dashboardModule",
     "settingModule",
-    "twofaceModule"
+    "twofaceModule",
+    "unregisterCustomerModule"
 ])
 .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $translateProvider.useLoader('langLoader', {});
@@ -43,6 +44,11 @@ angular.module('pipeApp',[
             url: '/twoface',
             templateUrl: './resources/html/function/twoface.html',
             controller: 'TwofaceCtrl'
+        })
+        .state('dashboard.unregcustomer', {
+            url: '/unregcustomer',
+            templateUrl: '/resources/html/function/unregister.customer.html',
+            controller: 'unregisterCustomerCtrl'
         });
 })
 .controller('indexController', function ($scope, $translate) {

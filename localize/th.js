@@ -33,4 +33,5 @@ var th = {
     //functions
     '_function_setting' : 'ตั้งค่า',
     '_function_twoface' : 'รายงานการพบลูกค้า',
+    '_function_unregcustomer' : 'ลูกค้าที่ยังไม่ได้ลงทะเบียน'
 };
